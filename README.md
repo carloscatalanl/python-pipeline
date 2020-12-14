@@ -1,5 +1,5 @@
 # Python Pipeline
-> Python Pipeline in GitHub Actions
+> Flask App Workflow using GitHub Actions.
 
-Automatic testing Flask App using GitHub Actions
+Test the code, build a Docker image and push to Docker Repo.
 
