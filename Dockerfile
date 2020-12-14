@@ -8,4 +8,4 @@ COPY . /app
 
 RUN pip3 --no-cache-dir install -r requirements.txt
 
-CMD [ 'python', "src/app.py"]
+CMD ["python","src/app.py"]
