@@ -2,7 +2,7 @@ name: Python CI
 
 on:
   push:
-    branches: [ main, deploy-aws ]
+    branches: [ main, deploy-aws ] # Quit in main branch
   
 jobs:
   build:
@@ -34,16 +34,12 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
         image: catalan94/python-pipeline
-        tag: v1.0
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+    - name: AWS CLI
+      uses: chrislennon/action-aws-cli@v1.1
+    - run: aws ec2 describe-instances
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
