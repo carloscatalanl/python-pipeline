@@ -41,7 +41,7 @@ jobs:
     - name: Reboot EC2 instance
       uses: ItsKarma/aws-cli@v1.70.0
       with:
-        args: ec2 reboot-instances --instance-ids i-072066c79f78489fd
+        args: ec2 reboot-instances --instance-ids ${{ secrets.AWS_EC2_ID }}
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
