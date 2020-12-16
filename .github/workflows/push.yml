@@ -1,57 +1,47 @@
-# name: Python CI
-
-# on:
-#   push:
-#     branches: [ main, deploy-aws ] # Quit in main branch
-  
-# jobs:
-#   build:
-
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - uses: actions/checkout@v2
-#     - name: Set up Python 3.8
-#       uses: actions/setup-python@v2
-#       with:
-#         python-version: 3.8
-#     - name: Install dependencies
-#       run: |
-#         python -m pip install --upgrade pip
-#         pip install flake8 pytest
-#         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-#     - name: Lint with flake8
-#       run: |
-#         # stop the build if there are Python syntax errors or undefined names
-#         flake8 ./src --count --select=E9,F63,F7,F82 --show-source --statistics
-#         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-#         flake8 ./src --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-#     - name: Test with pytest
-#       run: |
-#         export PYTHONPATH=src
-#         pytest
-#     - name: Build and Push Docker Image
-#       uses: mr-smithers-excellent/docker-build-push@v4
-#       with:
-#         image: catalan94/python-pipeline
-#         registry: docker.io
-#         username: ${{ secrets.DOCKER_USERNAME }}
-#         password: ${{ secrets.DOCKER_PASSWORD }}
-
-name: List S3 Contents - Multi OS
+name: Python CI
 
 on:
-  push
+  push:
+    branches: [ main, deploy-aws ] # Quit in main branch
+  
 jobs:
-  listS3:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macOS-10.14, windows-2016, ubuntu-18.04]
+  build:
+
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: chrislennon/action-aws-cli@v1.1
-      # All commands after this point have access to the AWS CLI
-      - run: aws s3 ls
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - uses: actions/checkout@v2
+    # - name: Set up Python 3.8
+    #   uses: actions/setup-python@v2
+    #   with:
+    #     python-version: 3.8
+    # - name: Install dependencies
+    #   run: |
+    #     python -m pip install --upgrade pip
+    #     pip install flake8 pytest
+    #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    # - name: Lint with flake8
+    #   run: |
+    #     # stop the build if there are Python syntax errors or undefined names
+    #     flake8 ./src --count --select=E9,F63,F7,F82 --show-source --statistics
+    #     # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+    #     flake8 ./src --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    # - name: Test with pytest
+    #   run: |
+    #     export PYTHONPATH=src
+    #     pytest
+    # - name: Build and Push Docker Image
+    #   uses: mr-smithers-excellent/docker-build-push@v4
+    #   with:
+    #     image: catalan94/python-pipeline
+    #     registry: docker.io
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: S3 Sync
+      uses: ItsKarma/aws-cli@v1.70.0
+      with:
+        args: aws ec2 describe-instances
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: "us-east-1"
