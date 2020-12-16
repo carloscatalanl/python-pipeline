@@ -30,13 +30,13 @@ jobs:
       run: |
         export PYTHONPATH=src
         pytest
-    - name: Build and Push Docker Image
-      uses: mr-smithers-excellent/docker-build-push@v4
-      with:
-        image: catalan94/python-pipeline
-        registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+    # - name: Build and Push Docker Image
+    #   uses: mr-smithers-excellent/docker-build-push@v4
+    #   with:
+    #     image: catalan94/python-pipeline
+    #     registry: docker.io
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
     - uses: chrislennon/action-aws-cli@v1.1
     - run: aws ec2 describe-instances
       env:
