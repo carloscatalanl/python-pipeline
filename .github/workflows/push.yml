@@ -11,34 +11,34 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    # - name: Set up Python 3.8
-    #   uses: actions/setup-python@v2
-    #   with:
-    #     python-version: 3.8
-    # - name: Install dependencies
-    #   run: |
-    #     python -m pip install --upgrade pip
-    #     pip install flake8 pytest
-    #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    # - name: Lint with flake8
-    #   run: |
-    #     # stop the build if there are Python syntax errors or undefined names
-    #     flake8 ./src --count --select=E9,F63,F7,F82 --show-source --statistics
-    #     # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-    #     flake8 ./src --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    # - name: Test with pytest
-    #   run: |
-    #     export PYTHONPATH=src
-    #     pytest
-    # - name: Build and Push Docker Image
-    #   uses: mr-smithers-excellent/docker-build-push@v4
-    #   with:
-    #     image: catalan94/python-pipeline
-    #     tag: latest
-    #     registry: docker.io
-    #     username: ${{ secrets.DOCKER_USERNAME }}
-    #     password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: multiple command
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 ./src --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 ./src --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
+      run: |
+        export PYTHONPATH=src
+        pytest
+    - name: Build and Push in Docker Hub
+      uses: mr-smithers-excellent/docker-build-push@v4
+      with:
+        image: catalan94/python-pipeline
+        tag: latest
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Connect to ssh and pull docker image
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
@@ -46,4 +46,4 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          ls -al
+          docker pull catalan94/python-pipeline:latest
