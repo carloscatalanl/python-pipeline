@@ -2,5 +2,5 @@ tasks = [
     {'name': 'Integrate', 'description': 'CI...'},
     {'name': 'Delivery', 'description': 'CD...'},
     {'name': 'Deployment', 'description': 'CD...'},
-    {'name': 'New Feature', 'description': 'Using Docker Pull!!!'}
+    {'name': 'New Feature', 'description': 'SSH'}
 ]
