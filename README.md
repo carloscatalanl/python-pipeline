@@ -5,14 +5,14 @@ Test the code, build a Docker image, push to Docker Repo and deploy on a EC2 (AW
 
 ### Prerequisites
 
-- AWS account
+- EC2 Instance running
 - Docker Hub Repo
 
 On `settings/secrets`
 ```
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-AWS_EC2_ID
+HOST = ssh host
+USERNAME = ssh user name
+KEY = content of ssh private key
 DOCKER_USERNAME
 DOCKER_PASSWORD
 ```
@@ -20,7 +20,6 @@ DOCKER_PASSWORD
 On `.github/workflow/push.yml`
 ```
 image: docker-user/docker-repo
-AWS_DEFAULT_REGION: "aws-region-to-deploy"
 ```
 
 ## Deploy
