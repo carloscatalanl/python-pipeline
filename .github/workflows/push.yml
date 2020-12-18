@@ -44,7 +44,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
         script: |
           sudo docker pull catalan94/python-pipeline:latest
           sudo docker-compose -f /home/ubuntu/app/docker-compose.yml up -d
