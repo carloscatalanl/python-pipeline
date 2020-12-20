@@ -1,5 +1,5 @@
 # Python Pipeline
-> Flask App Workflow using GitHub Actions.
+> Flask App Workflow using GitHub Actions and Terraform.
 
 Test the code, build a Docker image, push to Docker Repo and deploy on a EC2 (AWS) instance.
 
