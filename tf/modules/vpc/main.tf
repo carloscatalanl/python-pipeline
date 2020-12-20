@@ -7,10 +7,9 @@ resource "aws_vpc" "main" {
 }
 
 ## PUBLIC Subnet
-resource "aws_subnet" "public_subnets" {
+resource "aws_subnet" "public_subnet" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.public_subnet_cidr
-  #availability_zone = data.aws_availability_zones.all.names[count.index]
 
   tags = {
     Name = "Python PUB Sub"
