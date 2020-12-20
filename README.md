@@ -5,8 +5,18 @@ Test the code, build a Docker image, push to Docker Repo and deploy on a EC2 (AW
 
 ### Prerequisites
 
+- terraform (version used v0.13.4)
+- AWS account
 - EC2 Instance running
 - Docker Hub Repo
+
+On `~/.aws/credentials`
+```
+[default]
+aws_access_key_id=YOUR_ACCESS_KEY_ID
+aws_secret_access_key=YOUR_SECRET_ACCESS_KEY
+```
+
 
 On `settings/secrets`
 ```
@@ -22,8 +32,22 @@ On `.github/workflow/push.yml`
 image: docker-user/docker-repo
 ```
 
-## Deploy
+
+## Deploy CI/CD
 On main branch...
 ```sh
 git push
 ```
+
+## Deploy infrastructure
+```sh
+./deploy.sh
+```
+
+## Destroy infrastructure
+```sh
+./down.sh
+```
+
+## Authors
+* **Carlos Catalán** - [Github](https://github.com/catalan94)
