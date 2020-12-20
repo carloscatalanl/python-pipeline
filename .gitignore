@@ -4,4 +4,4 @@ __pycache__/
 .DS_Store
 .terraform
 private/
-.terraform*
+terraform.tfstate*
