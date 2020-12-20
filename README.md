@@ -22,7 +22,7 @@ On `settings/secrets`
 ```
 HOST = ssh host
 USERNAME = ssh user name
-KEY = content of ssh private key
+KEY = content of ssh private key (cat ./tf/private/key_access.pem)
 DOCKER_USERNAME
 DOCKER_PASSWORD
 ```
