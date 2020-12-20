@@ -32,13 +32,6 @@ On `.github/workflow/push.yml`
 image: docker-user/docker-repo
 ```
 
-
-## Deploy CI/CD
-On main branch...
-```sh
-git push
-```
-
 ## Deploy infrastructure
 ```sh
 ./deploy.sh
@@ -47,6 +40,12 @@ git push
 ## Destroy infrastructure
 ```sh
 ./down.sh
+```
+
+## Deploy CI/CD
+On main branch...
+```sh
+git push
 ```
 
 ## Authors
