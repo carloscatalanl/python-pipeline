@@ -37,6 +37,11 @@ image: docker-user/docker-repo
 ./deploy.sh
 ```
 
+### Connecting to your Linux instance using SSH
+```sh
+ssh -i ./tf/private/key_access.pem -A ubuntu@[instance IP]
+```
+
 ## Destroy infrastructure
 ```sh
 ./down.sh
