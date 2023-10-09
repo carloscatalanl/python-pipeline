@@ -3,7 +3,6 @@
 
 Test the code, build a Docker image, push to Docker Repo and deploy on a EC2 (AWS) instance.
 
-
 ### Prerequisites
 
 - terraform (version used v0.13.4)
