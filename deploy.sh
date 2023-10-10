@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-cd tf/
+cd terraform/
 
 ## SSH Keys
 

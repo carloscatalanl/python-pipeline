@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd tf/
+cd terraform/
 
 # Destroy terraform-managed infrastructure.
 terraform destroy -auto-approve

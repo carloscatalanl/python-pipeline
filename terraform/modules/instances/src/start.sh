@@ -16,7 +16,7 @@ echo "version: '3.3'
 
 services:
   python-api:
-    image: catalan94/python-pipeline:latest
+    image: carloscatalanl/python-pipeline:latest
     ports:
       - "80:4000"
     restart: always

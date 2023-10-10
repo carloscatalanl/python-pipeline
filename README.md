@@ -22,7 +22,7 @@ On `settings/secrets`
 ```
 HOST = ssh host
 USERNAME = ssh user name
-KEY = content of ssh private key (cat ./tf/private/key_access.pem)
+KEY = content of ssh private key (cat ./terraform/private/key_access.pem)
 DOCKER_USERNAME
 DOCKER_PASSWORD
 ```
@@ -39,7 +39,7 @@ image: docker-user/docker-repo
 
 ### Connecting to your Linux instance using SSH
 ```sh
-ssh -i ./tf/private/key_access.pem -A ubuntu@[instance IP]
+ssh -i ./terraform/private/key_access.pem -A ubuntu@[instance IP]
 ```
 
 ## Destroy infrastructure
